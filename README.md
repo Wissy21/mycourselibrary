@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Library Management System is a web-based application built with Java and Spring Boot. It allows users to manage a collection of books, authors, category, and publisher efficiently. ~~The system is designed to handle book lending, returning, and tracking operations.~~
+The Library Management System is a web-based application built with Java and Spring Boot. It allows users to manage a collection of books, authors, category, and publisher efficiently.
 
 ## Features
 
@@ -69,7 +69,7 @@ mvn spring-boot:run
 4. Access the Application: Open a browser and go to http://localhost:8080
 
 ## Project Structure
-
+```
 mycourselibrary/
 ├── src/main/java/com/application/
 │   ├── controller/      # Handles HTTP requests
@@ -83,7 +83,7 @@ mycourselibrary/
 │   ├── application.properties  # Configuration file
 ├── pom.xml               # Maven dependencies
 └── README.md             # Project documentation
-
+```
 ## Contact Information
 For questions or suggestions, feel free to reach out at 
 
