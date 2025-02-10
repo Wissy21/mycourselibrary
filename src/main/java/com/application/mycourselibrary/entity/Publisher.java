@@ -27,12 +27,4 @@ public class Publisher {
     public Publisher(String name) {
         this.name = name;
     }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

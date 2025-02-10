@@ -4,7 +4,6 @@ import com.application.mycourselibrary.entity.Author;
 import com.application.mycourselibrary.entity.Book;
 import com.application.mycourselibrary.entity.Category;
 import com.application.mycourselibrary.entity.Publisher;
-import com.application.mycourselibrary.service.AuthorService;
 import com.application.mycourselibrary.service.BookService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -39,8 +38,8 @@ public class MycourselibraryApplication {
 			book2.addPublisher(publisher2);
 			bookService.createBook(book2);
 
-			Book book3 = new Book("ABC21", "Book name", "My first book");
-			Author author3 = new Author("Test name3", "Test description");
+			var book3 = new Book("ABC21", "Book name", "My first book");
+			var author3 = new Author("Test name3", "Test description");
 			Category category3 = new Category("Fiction books");
 			Publisher publisher3 = new Publisher("Third Publisher");
 			book3.addAuthor(author3);

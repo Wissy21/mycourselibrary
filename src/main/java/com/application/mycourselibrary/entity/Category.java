@@ -27,12 +27,4 @@ public class Category {
     public Category(String name) {
         this.name = name;
     }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

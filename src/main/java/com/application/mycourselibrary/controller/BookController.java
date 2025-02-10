@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -62,11 +63,11 @@ public class BookController {
     }
 
     @PostMapping("/save-update/{id}")
-    public String updateBook(@PathVariable Long id, Book book, BindingResult result, Model model) {
+    public String updateBook(@PathVariable Long id, @RequestBody Book book, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "update-book";
         }
-        bookService.updateBook(book);
+        bookService.updateBook(id, book );
         model.addAttribute("books", bookService.findAllBooks());
         return "redirect:/books";
     }
@@ -89,4 +90,8 @@ public class BookController {
         return "redirect:/books";
     }
 
+    @GetMapping("/books/available")
+    public List<Book> getAvailableBooks() {
+        return bookService.getAvailableBooks();
+    }
 }

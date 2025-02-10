@@ -1,19 +1,28 @@
 package com.application.mycourselibrary.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "books")
-
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +36,8 @@ public class Book {
 
     @Column(name = "description", length = 250, nullable = false)
     private String description;
+
+    private boolean available = true;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "books_authors",
@@ -46,10 +57,6 @@ public class Book {
             inverseJoinColumns = {@JoinColumn(name = "publisher_id")})
     private Set<Publisher> publishers = new HashSet<Publisher>();
 
-    public Long getId() {
-        return id;
-    }
-
     public Book(String isbn, String name, String description) {
         this.isbn = isbn;
         this.name = name;
@@ -58,7 +65,7 @@ public class Book {
 
     public void removePublisher(Publisher publisher){
         this.publishers.remove(publisher);
-        publisher.getBooks().remove(publisher);
+        publisher.getBooks().remove(this);
     }
 
     public void addPublisher(Publisher publisher){
@@ -68,7 +75,7 @@ public class Book {
 
     public void removeAuthor(Author author){
         this.authors.remove(author);
-        author.getBooks().remove(author);
+        author.getBooks().remove(this);
     }
 
     public void addAuthor(Author author){
@@ -78,7 +85,7 @@ public class Book {
 
     public void removeCategory(Category category){
         this.categories.remove(category);
-        category.getBooks().remove(category);
+        category.getBooks().remove(this);
     }
 
     public void addCategory(Category category){
